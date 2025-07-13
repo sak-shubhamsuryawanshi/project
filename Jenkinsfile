@@ -2,22 +2,13 @@
 pipeline {
 agent {
 label {
-		label "built-in-project"
+		label "built-in-node"
 		customWorkspace "/data/project-myapp"
 		
 		}
 		}
 		
 	stages {
-		
-		stage ('CLEAN_OLD_M2') {
-			
-			steps {
-				sh "rm -rf /home/saccount/.m2/repository"
-				
-			}
-			
-		}
 	
 		stage ('MAVEN_BUILD') {
 		
@@ -34,7 +25,7 @@ label {
 		
 				steps {
 						
-						sh "scp -r target/LoginWebApp.war saccount@10.0.2.51:/data/project/wars"
+						sh "cp -r target/LoginWebApp.war /mnt/severs/apache-tomcat-10.1.43/webapps/"
 
 						}
 				
